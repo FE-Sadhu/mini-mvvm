@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>测试mvvm</title>
+  <script src="./js/mvvm.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>歌曲名称是：{{song}}</h1>
+    <p>《{{album.name}}》是{{singer}}于{{detailYear}}发行的专辑</p>
+    <p>这首主打歌是{{album.theme}}</p>
+    <p>作词人、编曲人是{{singer}}</p>
+    阿姆的年龄是{{age}} <br />
+    part of lyrics: 
+    Look' if you had one shot' one opportunity to seize everything you ever wanted,One moment.
+    Would you capture it or just let it slip?
+  </div>
+
+  <script>
+    const vm = new Mvvm({
+      el: '#app',
+      data: {
+        song: 'lose yourself',
+        album: {
+          name: '8 mile',
+          theme: '八英里电影主题曲'
+        },
+        singer: 'Eminem(姆爷)',
+        year: 2002,
+        minAge: 40
+      },
+      computed: {
+        detailYear() {
+          return this.year + '-01-01';
+        },
+        age() {
+          return this.minAge +  6;
+        }
+      },
+      mounted() {
+        console.log('编译完了就是mounted时间');
+      },
+    }) 
+  </script>
+</body>
+</html>
